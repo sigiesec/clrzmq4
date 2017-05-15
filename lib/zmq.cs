@@ -1,4 +1,6 @@
-﻿namespace ZeroMQ.lib
+﻿using System.Text;
+
+namespace ZeroMQ.lib
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -392,17 +394,17 @@
 
 
 		[DllImport(LibraryName, EntryPoint = "zmq_curve_keypair", CallingConvention = CCCdecl)]
-		private static extern Int32 zmq_curve_keypair(IntPtr z85_public_key, IntPtr z85_secret_key);
+		private static extern Int32 zmq_curve_keypair(StringBuilder z85_public_key, StringBuilder z85_secret_key);
 		[DllImport(__Internal, EntryPoint = "zmq_curve_keypair", CallingConvention = CCCdecl)]
-		private static extern Int32 zmq_curve_keypair__Internal(IntPtr z85_public_key, IntPtr z85_secret_key);
-		public delegate Int32 zmq_curve_keypair_delegate(IntPtr z85_public_key, IntPtr z85_secret_key);
+		private static extern Int32 zmq_curve_keypair__Internal(StringBuilder z85_public_key, StringBuilder z85_secret_key);
+		public delegate Int32 zmq_curve_keypair_delegate(StringBuilder z85_public_key, StringBuilder z85_secret_key);
 		public static readonly zmq_curve_keypair_delegate curve_keypair = zmq_curve_keypair;
 
 		[DllImport(LibraryName, EntryPoint = "zmq_z85_encode", CallingConvention = CCCdecl)]
-		private static extern IntPtr zmq_z85_encode(IntPtr dest, IntPtr data, Int32 size);
+		private static extern IntPtr zmq_z85_encode(StringBuilder dest, IntPtr data, Int32 size);
 		[DllImport(__Internal, EntryPoint = "zmq_z85_encode", CallingConvention = CCCdecl)]
-		private static extern IntPtr zmq_z85_encode__Internal(IntPtr dest, IntPtr data, Int32 size);
-		public delegate IntPtr zmq_z85_encode_delegate(IntPtr dest, IntPtr data, Int32 size);
+		private static extern IntPtr zmq_z85_encode__Internal(StringBuilder dest, IntPtr data, Int32 size);
+		public delegate IntPtr zmq_z85_encode_delegate(StringBuilder dest, IntPtr data, Int32 size);
 		public static readonly zmq_z85_encode_delegate z85_encode = zmq_z85_encode;
 
 		[DllImport(LibraryName, EntryPoint = "zmq_z85_decode", CallingConvention = CCCdecl)]
