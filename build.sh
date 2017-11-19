@@ -9,11 +9,16 @@ if [ -d $artifactsFolder ]; then
   rm -R $artifactsFolder
 fi
 
-xbuild /p:Configuration=Release clrzmq4.mono.sln
+msbuild /p:Configuration=Release clrzmq4.mono.sln
 
 export MONO_TRACE_LISTENER=Console.Out
 
 # MONO_OPTIONS="--profile=monocov:outfile=ZeroMQ.cov,+[ZeroMQ]"
+export MONO_LOG_LEVEL=debug
+export MONO_LOG_MASK=dll,cfg
+if [ "$(uname)" == "Darwin" ] ; then
+  cp amd64/libzmq.dylib ZeroMQTest/bin/Release
+fi
 mono ./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./ZeroMQTest/bin/Release/ZeroMQTest.dll
 
 # monocov --export-xml=ZeroMQ.cov.xml ZeroMQ.cov

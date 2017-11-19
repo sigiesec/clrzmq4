@@ -15,7 +15,7 @@ matrix:
 before_install:
   - chmod a+x ./install_deps.sh
 install:
-  - ./install_deps.sh
+  - INSTALL_LIBZMQ_MACOS=port ./install_deps.sh
 
 before_script:
   - chmod a+x ./build.sh
